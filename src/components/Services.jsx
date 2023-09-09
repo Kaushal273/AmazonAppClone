@@ -5,6 +5,7 @@ import SendMoney from '../assets/send-money.jpg';
 import ScanQR from '../assets/scan-qr.jpeg';
 import PayBills from '../assets/pay-bills.jpeg';
 import Service1 from '../assets/service1.jpeg';
+import { RecentSearchData } from "../data/RecentSearchData";
 
 
 const Services = () => {
@@ -12,7 +13,9 @@ const Services = () => {
         <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            style={styles.container}>
+            style={styles.container}
+            contentContainerStyle={{paddingRight: 20}}
+            >
             <View style={styles.serviceContainer}>
                 <View style={styles.row}>
                     <View style={styles.innerContainer}>
@@ -35,21 +38,26 @@ const Services = () => {
                     </View>
                 </View>
             </View>
-            <View style={styles.outerContainer}>
-                <Text style={styles.recentSearch}>Keep Shopping</Text>
-                <Image source={Service1} style={styles.serviceImg}/>
-            </View>
+            {
+                RecentSearchData.map(item => (
+                    <View key={item.id} style={styles.outerContainer}>
+                        <Text style={styles.recentSearch}>{item.title}</Text>
+                        <Image source={item.image} style={styles.serviceImg} />
+                    </View>
+                ))
+            }
+
         </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
-    row:{
-        flexDirection:"row",
+    row: {
+        flexDirection: "row",
         justifyContent: "space-between"
     },
     container: {
-        marginTop:-20,
+        marginTop: -20,
         paddingHorizontal: 10,
     },
     serviceContainer: {
@@ -67,25 +75,26 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingTop: 15,
     },
-    title:{
+    title: {
         fontSize: 10,
         color: "black",
         marginTop: 2,
     },
     serviceImg: {
         width: '100%',
-        height: 120
+        height: 130,
+        
     },
-    outerContainer:{
+    outerContainer: {
         backgroundColor: 'white',
-        marginLeft: 5,
+        marginLeft: 8,
         borderRadius: 5,
         elevation: 5,
         padding: 5,
         width: 140
     },
-    recentSearch:{
-        fontSize:13,
+    recentSearch: {
+        fontSize: 13,
         color: 'black',
         marginBottom: 8,
     }
