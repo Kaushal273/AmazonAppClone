@@ -1,13 +1,14 @@
 import { View, StatusBar } from "react-native";
 import React from "react";
-import HomeScreen from "./src/screens/HomeScreen";
+import Router from "./src/navigation/Router";
 
 const App = () => {
   return(
-    <View>
+    <>
       <StatusBar backgroundColor="#9ee4d4" barStyle='dark-content'/>
-      <HomeScreen />
-    </View>
+      <Router />
+      
+    </>
   )
 }
 
